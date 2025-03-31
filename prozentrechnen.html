@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interaktives Prozentrechnen</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #2e7d32;
+    }
+    .question {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .result {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      padding: 5px;
+      margin-top: 5px;
+      width: 100%;
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interaktives Prozentrechnen</h1>
+  <div id="quiz"></div>
+
+  <script>
+    const questions = [
+      { q: "🟢 Wie viel sind 10 % von 100 €?", a: "10" },
+      { q: "🟢 Wie viel sind 25 % von 40 kg?", a: "10" },
+      { q: "🟢 Ein Pullover kostet 80 Franken. Im Ausverkauf ist er 50 % günstiger. Wie viel Franken kostet er jetzt?", a: "40" },
+      { q: "🟡 Berechne: 15 % von 240 Franken", a: "36" },
+      { q: "🟡 Ein Fahrrad kostet neu 600 Franken. Es wird um 20 % reduziert. Wie viel kostet es jetzt?", a: "480" },
+      { q: "🔴 Ein T-Shirt kostet nach einem Rabatt von 15 % noch 34 Franken. Wie viel kostete es vorher?", a: "40" },
+      { q: "🔴 In einer Schule sind 480 Schüler:innen. Davon sind 288 Mädchen. Wie viel Prozent der Schüler:innen sind Mädchen?", a: "60" },
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+
+    questions.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'question';
+
+      const label = document.createElement('label');
+      label.textContent = `${index + 1}. ${item.q}`;
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Deine Antwort';
+
+      const result = document.createElement('div');
+      result.className = 'result';
+
+      input.addEventListener('input', () => {
+        if (input.value.trim() === item.a) {
+          result.textContent = '✅ Richtig!';
+          result.style.color = 'green';
+        } else {
+          result.textContent = '❌ Noch nicht korrekt';
+          result.style.color = 'red';
+        }
+      });
+
+      div.appendChild(label);
+      div.appendChild(input);
+      div.appendChild(result);
+      quizContainer.appendChild(div);
+    });
+  </script>
+</body>
+</html>
